@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="backpackresource" load_steps=4 format=3 uid="uid://cchc84fn5wthi"]
+
+[ext_resource type="PackedScene" uid="uid://mcrethwmqi3m" path="res://backpackitems/connector_one.tscn" id="1_th3tp"]
+[ext_resource type="Script" path="res://Scripts/backpackresource.gd" id="2_1mm5y"]
+[ext_resource type="Texture2D" uid="uid://g71e285m05lq" path="res://Sprites/stick.png" id="3_haif1"]
+
+[resource]
+script = ExtResource("2_1mm5y")
+name = "Branch"
+start_cost = 3
+increase_to_cost = 0
+start_cost_increase = 0
+has_one = false
+cost = 3
+attack_damage = 0
+scene = ExtResource("1_th3tp")
+texture = ExtResource("3_haif1")

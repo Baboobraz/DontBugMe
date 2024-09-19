@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="enemyresource" load_steps=2 format=3 uid="uid://cwmmxollslm50"]
+
+[ext_resource type="Script" path="res://Scripts/enemyresource.gd" id="1_8656j"]
+
+[resource]
+script = ExtResource("1_8656j")
+name = "Mosquito"
+health = 7
+attack_damage = 2
+speed = 70.0
+gold_dropped = 5
+cooldown = 2.0
+time_depleted = 0.5
+depletion_added = 2.0
+can_spawn = true
+first_spawn = false
+time_depleted_at_first_spawn = 25.0
+spawn_start_time = 40.0
+spawn_min_time = 0.3

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="backpackresource" load_steps=4 format=3 uid="uid://cfa607fok037c"]
+
+[ext_resource type="PackedScene" uid="uid://bpxhxjdgd1t5a" path="res://backpackitems/swatter.tscn" id="1_ysxow"]
+[ext_resource type="Script" path="res://Scripts/backpackresource.gd" id="2_vgppf"]
+[ext_resource type="Texture2D" uid="uid://5xyylg2geh05" path="res://Sprites/flyswatter.png" id="3_ic73h"]
+
+[resource]
+script = ExtResource("2_vgppf")
+name = "Swatter"
+start_cost = 0
+increase_to_cost = 2
+start_cost_increase = 8
+has_one = false
+cost = 5
+attack_damage = 1
+scene = ExtResource("1_ysxow")
+texture = ExtResource("3_ic73h")

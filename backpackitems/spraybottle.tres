@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="backpackresource" load_steps=4 format=3 uid="uid://d47u13p27sbr"]
+
+[ext_resource type="PackedScene" uid="uid://n8fxpyh4rjnq" path="res://backpackitems/spraybottle.tscn" id="1_s0jek"]
+[ext_resource type="Script" path="res://Scripts/backpackresource.gd" id="2_l86yo"]
+[ext_resource type="Texture2D" uid="uid://dj8oaingnhgl4" path="res://Sprites/spraybottle.png" id="3_qy3l1"]
+
+[resource]
+script = ExtResource("2_l86yo")
+name = "Spray Bottle"
+start_cost = 20
+increase_to_cost = 5
+start_cost_increase = 5
+has_one = false
+cost = 20
+attack_damage = 2
+scene = ExtResource("1_s0jek")
+texture = ExtResource("3_qy3l1")

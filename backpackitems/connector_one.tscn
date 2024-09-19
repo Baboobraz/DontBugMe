@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://mcrethwmqi3m"]
+
+[ext_resource type="Texture2D" uid="uid://g71e285m05lq" path="res://Sprites/stick.png" id="1_ecp27"]
+[ext_resource type="PackedScene" uid="uid://djql2bdlgmwbw" path="res://Scenes/selector.tscn" id="2_h8a3h"]
+
+[node name="connector one" type="StaticBody2D" groups=["connector"]]
+scale = Vector2(0.1, 0.155)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3.54272, -50.1647)
+scale = Vector2(3.0921, 3.0921)
+texture = ExtResource("1_ecp27")
+
+[node name="selector4" parent="." instance=ExtResource("2_h8a3h")]
+position = Vector2(-5.0046, -95.1221)
+scale = Vector2(1.00057, 0.51621)

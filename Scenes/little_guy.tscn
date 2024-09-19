@@ -1,0 +1,158 @@
+[gd_scene load_steps=21 format=3 uid="uid://bosdiblgln56l"]
+
+[ext_resource type="Script" path="res://Scripts/little_guy.gd" id="1_1nuy5"]
+[ext_resource type="Script" path="res://Scripts/backpack.gd" id="2_yyk32"]
+[ext_resource type="Resource" uid="uid://cfa607fok037c" path="res://backpackitems/swatter.tres" id="4_fr7xc"]
+[ext_resource type="Script" path="res://Scripts/backpackresource.gd" id="4_hwj27"]
+[ext_resource type="PackedScene" uid="uid://djql2bdlgmwbw" path="res://Scenes/selector.tscn" id="4_j07wr"]
+[ext_resource type="Resource" uid="uid://d47u13p27sbr" path="res://backpackitems/spraybottle.tres" id="5_eap74"]
+[ext_resource type="Resource" uid="uid://cchc84fn5wthi" path="res://backpackitems/connector.tres" id="5_egwm0"]
+[ext_resource type="Texture2D" uid="uid://dnlgrm6d18whm" path="res://Sprites/image4.png" id="6_w6umk"]
+[ext_resource type="Resource" uid="uid://dvb8w7xxi1p64" path="res://backpackitems/connector2.tres" id="6_xia6b"]
+[ext_resource type="Texture2D" uid="uid://bdnxpa4kcnu68" path="res://Sprites/image3.png" id="8_8uq48"]
+[ext_resource type="Texture2D" uid="uid://dfkxkgp1u7vdf" path="res://Sprites/image2.png" id="8_gqofq"]
+[ext_resource type="Texture2D" uid="uid://igse2b1vgfsi" path="res://Sprites/image1.png" id="9_ef5eh"]
+[ext_resource type="PackedScene" uid="uid://d23ydqsqm6j3o" path="res://Scenes/health_bar.tscn" id="11_wpfet"]
+[ext_resource type="AudioStream" uid="uid://ctnjgk4ytxg6r" path="res://Sounds/hitHurt.wav" id="12_xpi4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3o0g"]
+size = Vector2(13.6667, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_btmdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_gqofq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ef5eh")
+}, {
+"duration": 1.5,
+"texture": ExtResource("8_8uq48")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wvgnx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d2qw6"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.4, 0.4, 1), Color(1, 1, 1, 1), Color(1, 0.4, 0.4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jyiq0"]
+resource_name = "invincible"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.352941), Color(1, 1, 1, 1), Color(1, 1, 1, 0.352941), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_evgvi"]
+_data = {
+"RESET": SubResource("Animation_wvgnx"),
+"hurt": SubResource("Animation_d2qw6"),
+"invincible": SubResource("Animation_jyiq0")
+}
+
+[node name="LittleGuy" type="CharacterBody2D" groups=["player"]]
+texture_filter = 1
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+collision_mask = 128
+script = ExtResource("1_1nuy5")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.166667, -0.166675)
+shape = SubResource("RectangleShape2D_f3o0g")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="backpack" type="StaticBody2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.952962, 0.952962)
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("2_yyk32")
+backpack_resources = Array[ExtResource("4_hwj27")]([ExtResource("4_fr7xc"), ExtResource("5_eap74"), ExtResource("5_egwm0"), ExtResource("6_xia6b")])
+
+[node name="Sprite2D" type="Sprite2D" parent="backpack"]
+position = Vector2(0, -5)
+scale = Vector2(0.218647, 0.218647)
+texture = ExtResource("6_w6umk")
+
+[node name="selector" parent="backpack" instance=ExtResource("4_j07wr")]
+position = Vector2(0, -14.3413)
+
+[node name="selector2" parent="backpack" instance=ExtResource("4_j07wr")]
+position = Vector2(6.29616, -6.29616)
+rotation = 1.5708
+is_horizontal = true
+
+[node name="selector3" parent="backpack" instance=ExtResource("4_j07wr")]
+position = Vector2(-6.29616, -6.29616)
+rotation = -1.5708
+is_horizontal = true
+is_left = true
+
+[node name="BuildTimeout" type="Timer" parent="backpack"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.211615, 0.211615)
+sprite_frames = SubResource("SpriteFrames_btmdr")
+animation = &"idle"
+
+[node name="HealthBar" parent="." instance=ExtResource("11_wpfet")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_xpi4n")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_evgvi")
+}
+
+[connection signal="timeout" from="backpack/BuildTimeout" to="backpack" method="_on_build_timeout_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

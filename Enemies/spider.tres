@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="enemyresource" load_steps=2 format=3 uid="uid://bq4bcflfje533"]
+
+[ext_resource type="Script" path="res://Scripts/enemyresource.gd" id="1_0qoxy"]
+
+[resource]
+script = ExtResource("1_0qoxy")
+name = "Spider"
+health = 5
+attack_damage = 1
+speed = 50.0
+gold_dropped = 3
+cooldown = 1.0
+time_depleted = 0.2
+depletion_added = 0.0
+can_spawn = true
+first_spawn = false
+time_depleted_at_first_spawn = 0.0
+spawn_start_time = 5.0
+spawn_min_time = 0.2

@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=3 uid="uid://c86yit85tegrx"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_script.gd" id="1_o4atq"]
+[ext_resource type="Resource" uid="uid://c5gomc5w6o037" path="res://Enemies/wasp.tres" id="2_fifvo"]
+[ext_resource type="PackedScene" uid="uid://d23ydqsqm6j3o" path="res://Scenes/health_bar.tscn" id="3_cx17q"]
+[ext_resource type="Texture2D" uid="uid://dvskjxts1cgtm" path="res://Sprites/wasp1.png" id="4_dc30v"]
+[ext_resource type="Texture2D" uid="uid://lydmud02m62x" path="res://Sprites/wasp2.png" id="5_khi32"]
+[ext_resource type="Texture2D" uid="uid://bcy4xcspvnik2" path="res://Sprites/wasp3.png" id="6_trjye"]
+[ext_resource type="AudioStream" uid="uid://ctnjgk4ytxg6r" path="res://Sounds/hitHurt.wav" id="7_ll33y"]
+[ext_resource type="AudioStream" uid="uid://cge43e0ib8ryo" path="res://Sounds/explosion.wav" id="8_6elbm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_flohp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc30v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_khi32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_trjye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_khi32")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8mvc"]
+size = Vector2(16, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iq3u"]
+radius = 7.00793
+
+[sub_resource type="Animation" id="Animation_y4p0h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dmv55"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.4, 0.4, 1), Color(1, 1, 1, 1), Color(1, 0.4, 0.4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyc4u"]
+_data = {
+"RESET": SubResource("Animation_y4p0h"),
+"hurt": SubResource("Animation_dmv55")
+}
+
+[node name="wasp" type="CharacterBody2D" node_paths=PackedStringArray("health_bar", "timer") groups=["enemy"]]
+scale = Vector2(3, 3)
+collision_layer = 6
+collision_mask = 132
+script = ExtResource("1_o4atq")
+resource = ExtResource("2_fifvo")
+health_bar = NodePath("HealthBar")
+timer = NodePath("Timer")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_cx17q")]
+offset_top = -10.0
+offset_bottom = -7.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.117823, 0.117823)
+sprite_frames = SubResource("SpriteFrames_flohp")
+animation = &"walk"
+frame = 1
+frame_progress = 0.648232
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w8mvc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7iq3u")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jyc4u")
+}
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_ll33y")
+volume_db = -10.0
+pitch_scale = 0.6
+bus = &"SFX"
+
+[node name="Death" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_6elbm")
+volume_db = -5.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

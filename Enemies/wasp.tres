@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="enemyresource" load_steps=2 format=3 uid="uid://c5gomc5w6o037"]
+
+[ext_resource type="Script" path="res://Scripts/enemyresource.gd" id="1_wnh82"]
+
+[resource]
+script = ExtResource("1_wnh82")
+name = "Wasp"
+health = 10
+attack_damage = 3
+speed = 80.0
+gold_dropped = 8
+cooldown = 2.0
+time_depleted = 0.4
+depletion_added = 4.0
+can_spawn = true
+first_spawn = false
+time_depleted_at_first_spawn = 70.0
+immunities = Array[String](["Spray"])
+spawn_start_time = 90.0
+spawn_min_time = 0.3

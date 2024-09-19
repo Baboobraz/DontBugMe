@@ -1,0 +1,308 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1och0u406g5x"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_cwar2"]
+[ext_resource type="FontFile" uid="uid://c5mcheoki1oe3" path="res://PixelifySans-VariableFont_wght.ttf" id="1_tdvuo"]
+[ext_resource type="StyleBox" uid="uid://bibbm0a3ofvgf" path="res://uistyle.tres" id="3_bacsw"]
+[ext_resource type="FontFile" uid="uid://mhg2xehlpw8o" path="res://SHPinscher-Regular.otf" id="3_wt08j"]
+[ext_resource type="AudioStream" uid="uid://d0s2baxxj7ea0" path="res://Sounds/surviving.mp3" id="4_g0hcl"]
+[ext_resource type="Script" path="res://Scenes/menubutton.gd" id="4_v4odd"]
+[ext_resource type="Texture2D" uid="uid://c781l41fgbjum" path="res://Sprites/tree.png" id="6_r30me"]
+[ext_resource type="Texture2D" uid="uid://dfkxkgp1u7vdf" path="res://Sprites/image2.png" id="7_8khjs"]
+[ext_resource type="PackedScene" uid="uid://cdvlr7jfobvv7" path="res://Scenes/mouse_control.tscn" id="8_dn055"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_cwar2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_right = 0.996875
+anchor_bottom = 1.00417
+offset_left = 4.0
+offset_top = -5.0
+offset_right = 4.0
+offset_bottom = -5.00012
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0525078
+anchor_top = -0.00207469
+anchor_right = 0.703246
+anchor_bottom = 0.368057
+offset_right = 12197.6
+offset_bottom = 8817.42
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -0.152376
+scale = Vector2(0.0683035, 0.0543967)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 192
+theme_override_fonts/font = ExtResource("1_tdvuo")
+theme_override_font_sizes/font_size = 1741
+text = "Don't Bug Me!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="QUIT" type="Panel" parent="CanvasLayer/Control" node_paths=PackedStringArray("button")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342476
+anchor_top = 0.720952
+anchor_right = 0.619906
+anchor_bottom = 0.809126
+theme_override_styles/panel = ExtResource("3_bacsw")
+script = ExtResource("4_v4odd")
+button = NodePath("../Quitbutton")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/QUIT"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -45.5
+offset_right = 717.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.395237, 0.395237)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_wt08j")
+theme_override_font_sizes/font_size = 181
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Panel" parent="CanvasLayer/Control" node_paths=PackedStringArray("button")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342476
+anchor_top = 0.599585
+anchor_right = 0.619906
+anchor_bottom = 0.687759
+offset_left = 0.000610352
+offset_top = 0.000244141
+offset_right = 0.000610352
+offset_bottom = 0.000244141
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_bacsw")
+script = ExtResource("4_v4odd")
+button = NodePath("../OptionsButton")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -45.5
+offset_right = 717.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.395237, 0.395237)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_wt08j")
+theme_override_font_sizes/font_size = 181
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Panel" parent="CanvasLayer/Control" node_paths=PackedStringArray("button")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342476
+anchor_top = 0.476141
+anchor_right = 0.619906
+anchor_bottom = 0.564315
+offset_left = 0.000610352
+offset_top = -0.000366211
+offset_right = 0.000610352
+offset_bottom = -0.000366211
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_bacsw")
+script = ExtResource("4_v4odd")
+button = NodePath("../PlayButton")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Play"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -45.5
+offset_right = 717.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.395237, 0.395237)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_wt08j")
+theme_override_font_sizes/font_size = 181
+text = "PLAY!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quitbutton" type="Button" parent="CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342476
+anchor_top = 0.720952
+anchor_right = 0.617555
+anchor_bottom = 0.809126
+offset_right = 8.00006
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342476
+anchor_top = 0.476141
+anchor_right = 0.619122
+anchor_bottom = 0.564315
+offset_right = 8.00006
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342476
+anchor_top = 0.599585
+anchor_right = 0.619905
+anchor_bottom = 0.686722
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_g0hcl")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Visuals" type="Node" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Visuals"]
+position = Vector2(157, 820)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Visuals"]
+position = Vector2(482, 639)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Visuals"]
+position = Vector2(365, 1039)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Visuals"]
+position = Vector2(795, 1109)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Visuals"]
+position = Vector2(1044, 758)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Visuals"]
+position = Vector2(1306, 926)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Visuals"]
+position = Vector2(-299, 1024)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Visuals"]
+position = Vector2(-3.00003, 1137)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Visuals"]
+position = Vector2(-294, 725)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Visuals"]
+position = Vector2(848, 759)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Visuals"]
+position = Vector2(1148, 1173)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Visuals"]
+position = Vector2(1591, 703)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Visuals"]
+position = Vector2(2101, 1099)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Visuals"]
+position = Vector2(1705, 1227)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Visuals"]
+position = Vector2(1919, 700)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Visuals"]
+position = Vector2(2446, 1145)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Visuals"]
+position = Vector2(1505, 1394)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D19" type="Sprite2D" parent="Visuals"]
+position = Vector2(2250, 856)
+scale = Vector2(9.67636, 9.67636)
+texture = ExtResource("6_r30me")
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(197, 831)
+scale = Vector2(4.49529, 4.49529)
+texture = ExtResource("7_8khjs")
+
+[node name="Mouse Control" parent="." instance=ExtResource("8_dn055")]
+
+[connection signal="pressed" from="CanvasLayer/Control/Quitbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/OptionsButton" to="." method="_on_options_button_pressed"]

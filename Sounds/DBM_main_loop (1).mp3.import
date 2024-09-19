@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wh7mprarcy4t"
+path="res://.godot/imported/DBM_main_loop (1).mp3-2ad75ea0957b3cc51de8ff66b732fd4b.mp3str"
+
+[deps]
+
+source_file="res://Sounds/DBM_main_loop (1).mp3"
+dest_files=["res://.godot/imported/DBM_main_loop (1).mp3-2ad75ea0957b3cc51de8ff66b732fd4b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bal8j0as8bkih"]
+
+[ext_resource type="Texture2D" uid="uid://ddpkyg70tjfui" path="res://Sprites/doublestick.png" id="1_jpin5"]
+[ext_resource type="PackedScene" uid="uid://djql2bdlgmwbw" path="res://Scenes/selector.tscn" id="2_w46k1"]
+
+[node name="Connector2" type="StaticBody2D" groups=["connector"]]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5.04538)
+scale = Vector2(0.321396, 0.321396)
+texture = ExtResource("1_jpin5")
+
+[node name="selector" parent="." instance=ExtResource("2_w46k1")]
+position = Vector2(-4.58821, -8.90409)
+rotation = -1.5708
+is_horizontal = true
+is_left = true
+
+[node name="selector2" parent="." instance=ExtResource("2_w46k1")]
+position = Vector2(4.39754, -8.85038)
+rotation = 1.5708
+is_horizontal = true

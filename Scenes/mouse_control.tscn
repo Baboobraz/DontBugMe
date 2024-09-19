@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdvlr7jfobvv7"]
+
+[ext_resource type="Script" path="res://Scenes/mouse_control.gd" id="1_earis"]
+
+[node name="Mouse Control" type="Node"]
+script = ExtResource("1_earis")

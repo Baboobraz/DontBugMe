@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpxhxjdgd1t5a"]
+
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_yxfeq"]
+[ext_resource type="Texture2D" uid="uid://5xyylg2geh05" path="res://Sprites/flyswatter.png" id="3_sxap0"]
+[ext_resource type="AudioStream" uid="uid://dlwhhh4afaa0b" path="res://Sounds/laserShoot.wav" id="4_tvb7b"]
+
+[sub_resource type="Animation" id="Animation_3u22u"]
+resource_name = "swat"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.98968, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jwqhf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqook"]
+_data = {
+"RESET": SubResource("Animation_jwqhf"),
+"swat": SubResource("Animation_3u22u")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_equd0"]
+radius = 26.6833
+
+[node name="swatter" type="StaticBody2D"]
+script = ExtResource("1_yxfeq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.66667, -8)
+scale = Vector2(0.533166, 0.533166)
+texture = ExtResource("3_sxap0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_gqook")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, -7)
+shape = SubResource("CircleShape2D_equd0")
+debug_color = Color(0, 0.595, 0.7, 0.423529)
+
+[node name="cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tvb7b")
+bus = &"SFX"
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
